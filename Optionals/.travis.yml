@@ -1,0 +1,18 @@
+sudo: required
+git:
+  depth: false
+matrix:
+    include:
+      - language: csharp
+        mono: none
+        dotnet: 2.2
+        before_script:
+            - cd Template
+        script:
+            - dotnet restore
+            - dotnet build
+            - dotnet test
+        cache:
+            directories:
+                - '$HOME/.nuget/packages'
+                - '$HOME/.local/share/NuGet/Cache'
