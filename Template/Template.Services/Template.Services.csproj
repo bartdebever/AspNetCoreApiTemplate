@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Template.Models\Template.Models.csproj" />
+    <ProjectReference Include="..\Template.Repositories\Template.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>
