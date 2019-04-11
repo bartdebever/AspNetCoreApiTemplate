@@ -26,6 +26,7 @@ namespace Template.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureCors(services);
             ConfigureMvc(services);
             services
                 .AddPatterns()
@@ -38,6 +39,7 @@ namespace Template.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -48,6 +50,7 @@ namespace Template.Api
             app.UseHttpsRedirection();
              
             ConfigureMvc(app, env);
+            ConfigureCors(app);
         }
 
         #region Mvc
@@ -62,6 +65,26 @@ namespace Template.Api
             app.UseMvc();
         }
 
+        #endregion
+
+        #region Cors
+
+        private static void ConfigureCors(IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    "AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader().AllowCredentials());
+            });
+        }
+
+        private static void ConfigureCors(IApplicationBuilder application)
+        {
+            application.UseCors("AllowSpecificOrigin");
+        }
         #endregion
     }
 }
