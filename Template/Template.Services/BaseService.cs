@@ -9,7 +9,7 @@ using Template.Services.Interfaces;
 namespace Template.Services
 {
     /// <inheritdoc />
-    public class BaseService<TEntity> : IBaseService<TEntity>
+    public abstract class BaseService<TEntity> : IBaseService<TEntity>
         where TEntity : class, IEntity
     {
         /// <summary>

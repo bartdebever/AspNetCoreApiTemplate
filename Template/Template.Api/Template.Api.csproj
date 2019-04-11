@@ -16,4 +16,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Template.DAL\Template.Data.csproj" />
+    <ProjectReference Include="..\Template.Repositories\Template.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>

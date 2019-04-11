@@ -9,7 +9,7 @@ using Template.Repositories.Interfaces;
 
 namespace Template.Repositories
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity>
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
         where TEntity : class, IEntity
     {
         private readonly DbSet<TEntity> _dbSet;

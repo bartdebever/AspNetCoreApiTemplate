@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Template.Api.Configuration;
 
 namespace Template.Api
 {
@@ -25,7 +26,10 @@ namespace Template.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            ConfigureMvc(services);
+            services
+                .AddPatterns()
+                .AddServicesAndRepositories();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +46,22 @@ namespace Template.Api
             }
 
             app.UseHttpsRedirection();
+             
+            ConfigureMvc(app, env);
+        }
+
+        #region Mvc
+
+        private static void ConfigureMvc(IServiceCollection services)
+        {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+        }
+
+        private static void ConfigureMvc(IApplicationBuilder app, IHostingEnvironment env)
+        {
             app.UseMvc();
         }
+
+        #endregion
     }
 }
