@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using Template.Api.Configuration;
 
 namespace Template.Api
@@ -28,6 +30,7 @@ namespace Template.Api
         {
             ConfigureCors(services);
             ConfigureMvc(services);
+            ConfigureSwagger(services);
             services
                 .AddPatterns()
                 .AddServicesAndRepositories();
@@ -51,6 +54,7 @@ namespace Template.Api
              
             ConfigureMvc(app, env);
             ConfigureCors(app);
+            ConfigureSwagger(app);
         }
 
         #region Mvc
@@ -84,6 +88,32 @@ namespace Template.Api
         private static void ConfigureCors(IApplicationBuilder application)
         {
             application.UseCors("AllowSpecificOrigin");
+        }
+        #endregion
+
+        #region Swagger
+
+        private static void ConfigureSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Info { Title = $"{nameof(Template)} API", Version = "v1" });
+                options.IncludeXmlComments($@"{AppDomain.CurrentDomain.BaseDirectory}{nameof(Template)}.Api.xml");
+                options.DescribeAllEnumsAsStrings();
+            });
+        }
+
+        private static void ConfigureSwagger(IApplicationBuilder application)
+        {
+            application
+                .UseSwagger()
+                .UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Template API v1");
+                    c.DocExpansion(DocExpansion.None);
+                    c.RoutePrefix = string.Empty;
+                    c.DisplayRequestDuration();
+                });
         }
         #endregion
     }
