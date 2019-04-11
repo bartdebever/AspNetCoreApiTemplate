@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Resources", "Templ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 DAL", "4 DAL", "{F1E1AEE9-EC7E-48C5-98B1-6D8DEF62F394}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.DAL", "Template.DAL\Template.DAL.csproj", "{1D139557-A192-4877-9D07-D2F1D92A0052}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Data", "Template.DAL\Template.Data.csproj", "{1D139557-A192-4877-9D07-D2F1D92A0052}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
