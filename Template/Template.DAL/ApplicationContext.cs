@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Template.Data
 {
@@ -11,14 +8,14 @@ namespace Template.Data
         {
         }
 
-        public ApplicationContext() : base()
+        public ApplicationContext()
         {
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            
+
             // Use this to add Entity Configurations.
         }
     }

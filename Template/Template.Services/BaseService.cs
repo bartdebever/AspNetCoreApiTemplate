@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Template.Models.Interfaces;
 using Template.Repositories.Interfaces;
 using Template.Services.Interfaces;
@@ -13,12 +10,12 @@ namespace Template.Services
         where TEntity : class, IEntity
     {
         /// <summary>
-        /// The repository injected into this object.
+        ///     The repository injected into this object.
         /// </summary>
         protected readonly IBaseRepository<TEntity> Repository;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseService{TEntity}"/> class.
+        ///     Initializes a new instance of the <see cref="BaseService{TEntity}" /> class.
         /// </summary>
         /// <param name="repository"></param>
         public BaseService(IBaseRepository<TEntity> repository)

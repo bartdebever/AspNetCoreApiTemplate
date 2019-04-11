@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Template.Api.Configuration;
@@ -51,7 +45,7 @@ namespace Template.Api
             }
 
             app.UseHttpsRedirection();
-             
+
             ConfigureMvc(app, env);
             ConfigureCors(app);
             ConfigureSwagger(app);
@@ -89,6 +83,7 @@ namespace Template.Api
         {
             application.UseCors("AllowSpecificOrigin");
         }
+
         #endregion
 
         #region Swagger
@@ -97,7 +92,7 @@ namespace Template.Api
         {
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Info { Title = $"{nameof(Template)} API", Version = "v1" });
+                options.SwaggerDoc("v1", new Info {Title = $"{nameof(Template)} API", Version = "v1"});
                 options.IncludeXmlComments($@"{AppDomain.CurrentDomain.BaseDirectory}{nameof(Template)}.Api.xml");
                 options.DescribeAllEnumsAsStrings();
             });
@@ -115,6 +110,7 @@ namespace Template.Api
                     c.DisplayRequestDuration();
                 });
         }
+
         #endregion
     }
 }

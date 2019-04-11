@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,17 +13,17 @@ namespace Template.Api.Controllers
         }
 
         /// <summary>
-        /// Gets a simple collection of 2 values.
+        ///     Gets a simple collection of 2 values.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new[] {"value1", "value2"};
         }
 
         /// <summary>
-        /// Gets a value based on it's id.
+        ///     Gets a value based on it's id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -37,7 +34,7 @@ namespace Template.Api.Controllers
         }
 
         /// <summary>
-        /// Creates a new value based on the given body.
+        ///     Creates a new value based on the given body.
         /// </summary>
         /// <param name="value"></param>
         [HttpPost]
@@ -46,7 +43,7 @@ namespace Template.Api.Controllers
         }
 
         /// <summary>
-        /// Updates a value based on the given id and value.
+        ///     Updates a value based on the given id and value.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="value"></param>
@@ -56,7 +53,7 @@ namespace Template.Api.Controllers
         }
 
         /// <summary>
-        /// Deletes a value.
+        ///     Deletes a value.
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("{id}")]

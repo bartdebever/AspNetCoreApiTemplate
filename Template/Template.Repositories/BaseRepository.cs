@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Template.Models.Interfaces;
@@ -15,21 +13,12 @@ namespace Template.Repositories
         private readonly DbSet<TEntity> _dbSet;
 
         /// <summary>
-        /// Creates a new instance of the <see cref="BaseRepository{TEntity}"/> class.
+        ///     Creates a new instance of the <see cref="BaseRepository{TEntity}" /> class.
         /// </summary>
         /// <param name="context">The context wanting to be used for operations.</param>
         protected BaseRepository(DbContext context)
         {
             _dbSet = context.Set<TEntity>();
-        }
-
-        /// <summary>
-        /// Creates a new <see cref="IQueryable{T}"/> instance.
-        /// </summary>
-        /// <returns>A new instance of <see cref="IQueryable{T}"/></returns>
-        protected IQueryable<TEntity> Queryable()
-        {
-            return _dbSet.AsQueryable();
         }
 
         /// <inheritdoc />
@@ -81,29 +70,34 @@ namespace Template.Repositories
         }
 
         /// <summary>
-        /// Checks if the given <param name="entity"> is null.</param>
+        ///     Creates a new <see cref="IQueryable{T}" /> instance.
         /// </summary>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="entity"/> is null.</exception>
-        /// <param name="entity">The entity wanting to be checked.</param>
-        protected void CheckGivenEntity(TEntity entity)
+        /// <returns>A new instance of <see cref="IQueryable{T}" /></returns>
+        protected IQueryable<TEntity> Queryable()
         {
-            if (entity == null)
-            {
-                throw new ArgumentNullException(nameof(entity));
-            }
+            return _dbSet.AsQueryable();
         }
 
         /// <summary>
-        /// Checks if the given <param name="id"> is a valid value.</param>
+        ///     Checks if the given
+        ///     <param name="entity"> is null.</param>
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when the <paramref name="id"/> is invalid.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="entity" /> is null.</exception>
+        /// <param name="entity">The entity wanting to be checked.</param>
+        protected void CheckGivenEntity(TEntity entity)
+        {
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+        }
+
+        /// <summary>
+        ///     Checks if the given
+        ///     <param name="id"> is a valid value.</param>
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the <paramref name="id" /> is invalid.</exception>
         /// <param name="id"></param>
         protected void CheckGivenId(long id)
         {
-            if (id < 1)
-            {
-                throw new ArgumentException(nameof(id));
-            }
+            if (id < 1) throw new ArgumentException(nameof(id));
         }
     }
 }
